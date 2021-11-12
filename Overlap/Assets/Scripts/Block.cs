@@ -1,13 +1,15 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Block : MonoBehaviour, IPooledObject
 {
     private PlayingBlock[] BlockPrefabs = new PlayingBlock[3];
     private int blockActivated = 0;
     private int currentBlock = 0;
-    private static int j;
+    private int[] degrees = {0,90,180,270};
     enum ColorCoding
     {
         Unit,
@@ -42,7 +44,10 @@ public class Block : MonoBehaviour, IPooledObject
         blockActivated = index; 
         // Setting the previous active block inactive and activates the random chosen block
         BlockPrefabs[currentBlock].gameObject.SetActive(false);
-        BlockPrefabs[blockActivated].gameObject.SetActive(true);
+        PlayingBlock block = BlockPrefabs[blockActivated];
+        block.gameObject.SetActive(true);
+        block.Rotate(degrees[Random.Range(0,degrees.Length)]);
+        
         currentBlock = blockActivated;
     }
 }
