@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
-    
+
     // GAME STATE
    
 
@@ -15,9 +15,9 @@ public class GameManager : MonoBehaviour
    
     // Resources
     public Dictionary<string, AudioSource> AudioSources;
-    
-    
-    
+
+
+
 
     private void Awake()
     {
