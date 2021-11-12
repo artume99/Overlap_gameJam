@@ -4,19 +4,20 @@ using UnityEngine;
 
 public class Block : MonoBehaviour, IPooledObject
 {
-    private PlayingBlock[] BlockPrefabs = new PlayingBlock[2];
+    private PlayingBlock[] BlockPrefabs = new PlayingBlock[3];
     private int blockActivated = 0;
     private int currentBlock = 0;
+    private static int j;
     enum ColorCoding
     {
         Unit,
         PinkP
     }
-    private int num_of_available_blocks = 2;
+    private int num_of_available_blocks = 3;
 
     [SerializeField] private float speed = 2f;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         for (int i = 0; i < gameObject.transform.childCount; i++)
         {
@@ -38,8 +39,8 @@ public class Block : MonoBehaviour, IPooledObject
 
     private void ActiveBlock(int index)
     {
-        Debug.Log(index);
-        blockActivated = index;
+        blockActivated = index; 
+        // Setting the previous active block inactive and activates the random chosen block
         BlockPrefabs[currentBlock].gameObject.SetActive(false);
         BlockPrefabs[blockActivated].gameObject.SetActive(true);
         currentBlock = blockActivated;
