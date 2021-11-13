@@ -30,7 +30,7 @@ public class ObjectPooling : MonoBehaviour
             Queue<GameObject> objectPool = new Queue<GameObject>();
             for (int i = 0; i < pool.size; i++)
             {
-                GameObject obj = Instantiate(pool.prefab);
+                GameObject obj = Instantiate(pool.prefab,transform);
                 obj.SetActive(false);
                 objectPool.Enqueue(obj);
             }
@@ -44,7 +44,7 @@ public class ObjectPooling : MonoBehaviour
         objectSpawn.SetActive(true);
         objectSpawn.transform.position = pos;
         objectSpawn.transform.rotation = rotation;
-
+        
         IPooledObject pooledObject = objectSpawn.GetComponent<IPooledObject>();
         if (pooledObject != null)
         {

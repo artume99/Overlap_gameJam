@@ -1,19 +1,16 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FrogPlayer : MonoBehaviour
+public class Player2 : MonoBehaviour
 {
-    private bool moveLeft;
-
-    private bool moveRight;
-
     private bool moveUP;
 
     private bool moveDown;
 
-    private float tikTime = 0.2f;
+    public PlayingBlock check;
+
+    [SerializeField] private float tikTime = 0.2f;
     // Start is called before the first frame update
     void Awake()
     {
@@ -22,19 +19,12 @@ public class FrogPlayer : MonoBehaviour
 
     public void Update()
     {
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
-        {
-            moveLeft = true;
-        }
-        if (Input.GetKeyDown(KeyCode.RightArrow))
-        {
-            moveRight = true;
-        }
-        if (Input.GetKeyDown(KeyCode.UpArrow))
+        
+        if (Input.GetKeyDown(KeyCode.W))
         {
             moveUP = true;
         }
-        if (Input.GetKeyDown(KeyCode.DownArrow))
+        if (Input.GetKeyDown(KeyCode.S))
         {
             moveDown = true;
         }
@@ -49,18 +39,9 @@ public class FrogPlayer : MonoBehaviour
         yield return null;
         while (true)
         {
-            if (moveLeft)
-            {
-                transform.Translate(Vector3.left);
-                moveLeft = false;
-            }
-            if (moveRight)
-            {
-                transform.Translate(Vector3.right);
-                moveRight = false;
-            }
             if (moveUP)
             {
+
                 transform.Translate(Vector3.up);
                 moveUP = false;
             }
@@ -71,6 +52,13 @@ public class FrogPlayer : MonoBehaviour
             }
             yield return new WaitForSeconds(tikTime);
         }
-        
+    }
+
+    private void ShootBlock()
+    {
+        // GameManager.Instance.GetNextBlock();
+        PlayingBlock block = check;
+        // rotation check
+        GameObject.Instantiate(block, transform.position, Quaternion.Euler(0,0,block.currentRotation));
     }
 }

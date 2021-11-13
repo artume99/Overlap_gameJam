@@ -7,6 +7,7 @@ public class BlockSpawner : MonoBehaviour
     [SerializeField] float interval = 0.5f;
     private float timer;
     private ObjectPooling pooler;
+    
     // Start is called before the first frame update
     void Start()
     {
