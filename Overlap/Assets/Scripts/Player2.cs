@@ -8,6 +8,10 @@ public class Player2 : MonoBehaviour
 
     private bool moveDown;
 
+    private bool shoot;
+
+    [SerializeField] private Transform tetrisRoot;
+
     public PlayingBlock check;
 
     [SerializeField] private float tikTime = 0.2f;
@@ -27,6 +31,10 @@ public class Player2 : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.S))
         {
             moveDown = true;
+        }
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            shoot = true;
         }
     }
 
@@ -50,15 +58,24 @@ public class Player2 : MonoBehaviour
                 transform.Translate(Vector3.down);
                 moveDown = false;
             }
+
+            if (shoot)
+            {
+                ShootBlock();
+                shoot = false; 
+            }
             yield return new WaitForSeconds(tikTime);
         }
     }
 
     private void ShootBlock()
     {
+        
         // GameManager.Instance.GetNextBlock();
-        PlayingBlock block = check;
-        // rotation check
-        GameObject.Instantiate(block, transform.position, Quaternion.Euler(0,0,block.currentRotation));
+        PlayingBlock block = Instantiate(check);
+        block.transform.SetParent(tetrisRoot);
+        block.transform.position = transform.position + Vector3.right;
+        block.transform.rotation = Quaternion.Euler(0, 0,block.currentRotation);
+        block.StartMoving(Vector3.right, playerBlock:true);
     }
 }

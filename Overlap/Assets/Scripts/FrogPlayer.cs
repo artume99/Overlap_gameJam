@@ -73,4 +73,17 @@ public class FrogPlayer : MonoBehaviour
         }
         
     }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("UnitBlock"))
+        {
+            transform.SetParent(other.transform);
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        transform.SetParent(null);
+    }
 }

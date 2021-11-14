@@ -7,6 +7,7 @@ public class BlockSpawner : MonoBehaviour
     [SerializeField] float interval = 0.5f;
     private float timer;
     private ObjectPooling pooler;
+    [SerializeField] private Transform[] spawnPoints;
     
     // Start is called before the first frame update
     void Start()
@@ -28,6 +29,8 @@ public class BlockSpawner : MonoBehaviour
 
     private void Spawn()
     {
-        pooler.SpawnFromPool("Block", transform.position, Quaternion.identity);
+        var rnd = spawnPoints[Random.Range(0,spawnPoints.Length)];
+        pooler.SpawnFromPool("Block", rnd.position, Quaternion.identity);
+        // Version2.SharedInstance.GetPooledObject(transform.position, Quaternion.identity);
     }
 }

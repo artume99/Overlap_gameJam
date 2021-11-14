@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Security.Cryptography.X509Certificates;
@@ -7,10 +8,13 @@ using UnityEngine;
 public class PlayingBlock : MonoBehaviour
 {
     [SerializeField] private Transform rotationPoint;
+     public Transform spawnPoint;
+    
     public int currentRotation = 0;
     private int defaultRotation = 90;
     private Vector3 currentDirection;
     private bool move = false;
+    
 
     // Update is called once per frame
     public void TetrisUpdate()
@@ -18,6 +22,14 @@ public class PlayingBlock : MonoBehaviour
         if (move)
             transform.Translate(currentDirection, Space.World);
     }
+
+    // public void OnEnable()
+    // {
+    //     if (spawnPoint)
+    //     {
+    //        spawnPoint.position = 
+    //     }
+    // }
 
     public void Rotate(int degrees=90, bool clockWise=true, bool inDisplay=false)
     {
@@ -39,8 +51,10 @@ public class PlayingBlock : MonoBehaviour
         
     }
 
-    public void StartMoving(Vector3 direction)
+    public void StartMoving(Vector3 direction, bool playerBlock=false)
     {
+        if(!playerBlock)
+            transform.localPosition = Vector3.zero;
         move = true;
         currentDirection = direction;
 

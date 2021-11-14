@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour
    
     // Resources
     public Dictionary<string, AudioSource> AudioSources;
+    public GameObject[] Blocks;
 
 
 

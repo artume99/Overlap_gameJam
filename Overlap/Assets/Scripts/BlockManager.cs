@@ -12,9 +12,6 @@ public class BlockManager : MonoBehaviour, IPooledObject
     private int currentBlock = 0;
     private int[] degrees = {0,90,180,270};
 
-    private static int id = 0;
-    private int myid;
-
     private string BlockTag = "UnitBlock";
     public Sprite check;
     
@@ -29,13 +26,13 @@ public class BlockManager : MonoBehaviour, IPooledObject
     // Start is called before the first frame update
     void Awake()
     {
-        myid = id;
-        id += 1;
+        
         for (int i = 0; i < gameObject.transform.childCount; i++)
         {
             BlockPrefabs[i] = transform.GetChild(i).GetComponent<PlayingBlock>();
         }
         
+
     }
 
     public void TetrisUpdate()
@@ -47,6 +44,7 @@ public class BlockManager : MonoBehaviour, IPooledObject
         
         ActiveBlock(Random.Range(0,num_of_available_blocks));
     }
+    
 
     private void ActiveBlock(int index)
     {
