@@ -36,6 +36,14 @@ public class Player2 : MonoBehaviour
         {
             shoot = true;
         }
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            GameManager.Instance.menu.RotateBlockImage(false);
+        }
+        if (Input.GetKeyDown(KeyCode.D))
+        {
+            GameManager.Instance.menu.RotateBlockImage(true);
+        }
     }
 
     public void TetrisUpdate()
@@ -71,11 +79,12 @@ public class Player2 : MonoBehaviour
     private void ShootBlock()
     {
         
-        // GameManager.Instance.GetNextBlock();
-        PlayingBlock block = Instantiate(check);
+        var block = GameManager.Instance.GetNextBlock();
+        block = Instantiate(block);
         block.transform.SetParent(tetrisRoot);
         block.transform.position = transform.position + Vector3.right;
         block.transform.rotation = Quaternion.Euler(0, 0,block.currentRotation);
         block.StartMoving(Vector3.right, playerBlock:true);
+        GameManager.Instance.SetBlockImage();
     }
 }

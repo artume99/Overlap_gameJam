@@ -46,8 +46,11 @@ public class PlayingBlock : MonoBehaviour
                 currentRotation -= defaultRotation;
             }
         }
+        else
+        {
+            transform.RotateAround(rotationPoint.position,new Vector3(0,0,1), degrees);
+        }
         // Rotationg the block from the rotation point of the block
-        transform.RotateAround(rotationPoint.position,new Vector3(0,0,1), degrees);
         
     }
 

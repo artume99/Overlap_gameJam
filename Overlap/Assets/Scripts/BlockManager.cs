@@ -6,8 +6,8 @@ using UnityEngine;
 using Random = UnityEngine.Random;
 
 public class BlockManager : MonoBehaviour, IPooledObject
-{
-    private PlayingBlock[] BlockPrefabs = new PlayingBlock[3];
+{ 
+    public PlayingBlock[] BlockPrefabs;
     private int blockActivated = 0;
     private int currentBlock = 0;
     private int[] degrees = {0,90,180,270};
@@ -26,13 +26,7 @@ public class BlockManager : MonoBehaviour, IPooledObject
     // Start is called before the first frame update
     void Awake()
     {
-        
-        for (int i = 0; i < gameObject.transform.childCount; i++)
-        {
-            BlockPrefabs[i] = transform.GetChild(i).GetComponent<PlayingBlock>();
-        }
-        
-
+        num_of_available_blocks = BlockPrefabs.Length;
     }
 
     public void TetrisUpdate()

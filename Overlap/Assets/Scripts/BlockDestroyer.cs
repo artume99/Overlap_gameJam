@@ -9,7 +9,7 @@ public class BlockDestroyer : MonoBehaviour
    {
       if (other.tag == "PlayingBlock")
       {
-         other.transform.parent.gameObject.SetActive(false);
+         Destroy(other.transform.gameObject);
       }
    }
    

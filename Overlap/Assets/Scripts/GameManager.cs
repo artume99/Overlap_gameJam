@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.SocialPlatforms.Impl;
+using Random = UnityEngine.Random;
 
 public class GameManager : MonoBehaviour
 {
@@ -16,7 +17,7 @@ public class GameManager : MonoBehaviour
     // References
     // plyaer 1
     // player 2
-    // menue (ui manager)
+    public MenuController menu;
     
    
     // Resources
@@ -37,9 +38,19 @@ public class GameManager : MonoBehaviour
         Instance = this;
     }
 
+    private void Start()
+    {
+        SetBlockImage();
+    }
+
+    public void SetBlockImage()
+    {
+        menu.SetBlockImage(Random.Range(0, Blocks.Length));
+    }
+
     public PlayingBlock GetNextBlock()
     {
-        return null;
+        return menu.GetDisplayBlock();
     }
     
     
