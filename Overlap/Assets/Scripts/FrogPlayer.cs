@@ -13,7 +13,7 @@ public class FrogPlayer : MonoBehaviour
 
     private bool moveDown;
 
-    private float tikTime = 0.2f;
+    [SerializeField]private float tikTime = 0.1f;
     // Start is called before the first frame update
     void Awake()
     {
