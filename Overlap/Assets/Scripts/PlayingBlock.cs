@@ -14,6 +14,7 @@ public class PlayingBlock : MonoBehaviour
     private int defaultRotation = 90;
     private Vector3 currentDirection;
     private bool move = false;
+    private float tikTime = 0.5f;
     
 
     // Update is called once per frame
@@ -22,14 +23,16 @@ public class PlayingBlock : MonoBehaviour
         if (move)
             transform.Translate(currentDirection, Space.World);
     }
-
-    // public void OnEnable()
-    // {
-    //     if (spawnPoint)
-    //     {
-    //        spawnPoint.position = 
-    //     }
-    // }
+    private IEnumerator PlayerBlockMovement()
+    {
+        yield return null;
+        while (true)
+        {
+            transform.Translate(currentDirection, Space.World);
+            yield return new WaitForSeconds(tikTime);
+        }
+        
+    }
 
     public void Rotate(int degrees=90, bool clockWise=true, bool inDisplay=false)
     {
@@ -58,8 +61,15 @@ public class PlayingBlock : MonoBehaviour
     {
         if(!playerBlock)
             transform.localPosition = Vector3.zero;
+        else
+            StartCoroutine(PlayerBlockMovement());
         move = true;
         currentDirection = direction;
 
+    }
+
+    public void SetBlockTikTime(float tik)
+    {
+        tikTime = tik;
     }
 }

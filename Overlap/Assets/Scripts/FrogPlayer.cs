@@ -14,10 +14,18 @@ public class FrogPlayer : MonoBehaviour
     private bool moveDown;
 
     [SerializeField]private float tikTime = 0.1f;
+
+    [SerializeField]
+    private Transform spawnPoint;
     // Start is called before the first frame update
     void Awake()
     {
         StartCoroutine(MoveObject());
+    }
+
+    private void Start()
+    {
+        transform.position = spawnPoint.position;
     }
 
     public void Update()
@@ -74,20 +82,20 @@ public class FrogPlayer : MonoBehaviour
         
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerStay2D(Collider2D other)
     {
-        Debug.Log("hi");
         if (other.gameObject.CompareTag("UnitBlock"))
         {
+            Debug.Log("hi");
             transform.SetParent(other.transform);
         }
     }
     
     private void OnTriggerExit2D(Collider2D other)
     {
-        Debug.Log("bye");
         if (other.gameObject.CompareTag("UnitBlock"))
         {
+            Debug.Log("bye");
             transform.SetParent(null);
         }
     }

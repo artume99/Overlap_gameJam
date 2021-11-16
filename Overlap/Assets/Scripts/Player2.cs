@@ -13,12 +13,20 @@ public class Player2 : MonoBehaviour
     [SerializeField] private Transform tetrisRoot;
 
     public PlayingBlock check;
+    private float timer;
 
     [SerializeField] private float tikTime = 0.2f;
+
+    [SerializeField] private Transform spawnPoint;
     // Start is called before the first frame update
     void Awake()
     {
         StartCoroutine(MoveObject());
+    }
+    
+    private void Start()
+    {
+        transform.position = spawnPoint.position;
     }
 
     public void Update()
@@ -32,18 +40,17 @@ public class Player2 : MonoBehaviour
         {
             moveDown = true;
         }
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.D) && timer>(tikTime*2))
         {
             shoot = true;
+            timer = 0;
         }
         if (Input.GetKeyDown(KeyCode.A))
         {
             GameManager.Instance.menu.RotateBlockImage(false);
         }
-        if (Input.GetKeyDown(KeyCode.D))
-        {
-            GameManager.Instance.menu.RotateBlockImage(true);
-        }
+
+        timer += Time.deltaTime;
     }
 
     public void TetrisUpdate()
@@ -81,9 +88,10 @@ public class Player2 : MonoBehaviour
         
         var block = GameManager.Instance.GetNextBlock();
         block = Instantiate(block);
-        block.transform.SetParent(tetrisRoot);
-        block.transform.position = transform.position + Vector3.right;
+        // block.transform.SetParent(tetrisRoot);
+        block.transform.position = transform.position;
         block.transform.rotation = Quaternion.Euler(0, 0,block.currentRotation);
+        block.SetBlockTikTime(0.2f);
         block.StartMoving(Vector3.right, playerBlock:true);
         GameManager.Instance.SetBlockImage();
     }
