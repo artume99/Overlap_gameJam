@@ -1506,7 +1506,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50caef4a6eb1f8f45808704dc0d49ea4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tikTime: 0.6
+  tikTime: 0.7
 --- !u!4 &1228687788
 Transform:
   m_ObjectHideFlags: 0
