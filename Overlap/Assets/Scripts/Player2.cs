@@ -42,7 +42,7 @@ public class Player2 : MonoBehaviour
         {
             moveDown = true;
         }
-        if (Input.GetKeyDown(KeyCode.D) && timer>(tikTime*4))
+        if (Input.GetKeyDown(KeyCode.A) && timer>(tikTime*4))
         {
             shootRight = true;
             timer = 0;
@@ -51,7 +51,7 @@ public class Player2 : MonoBehaviour
         // {
         //     GameManager.Instance.menu.RotateBlockImage(false);
         // }
-        if (Input.GetKeyDown(KeyCode.A) && timer>(tikTime*4))
+        if (Input.GetKeyDown(KeyCode.D) && timer>(tikTime*4))
         {
             shootLeft = true;
             timer = 0;
@@ -103,6 +103,7 @@ public class Player2 : MonoBehaviour
         block = Instantiate(block);
         // block.transform.SetParent(tetrisRoot);
         block.transform.position = pos;
+        block.tag = "PlayingBlock";
         block.transform.rotation = Quaternion.Euler(0, 0,block.currentRotation);
         block.SetBlockTikTime(blockTikTime);
         block.StartMoving(direction, playerBlock:true);

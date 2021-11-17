@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8948187938605022521}
   - component: {fileID: 2224793587773287797}
   - component: {fileID: 4084587108639780289}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 16X16 square
   m_TagString: UnitBlock
   m_Icon: {fileID: 0}
@@ -121,7 +121,7 @@ GameObject:
   - component: {fileID: 6905816077135953018}
   - component: {fileID: 2210018206402641336}
   - component: {fileID: 1722009556099042683}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: red_2
   m_TagString: UnitBlock
   m_Icon: {fileID: 0}
@@ -231,7 +231,7 @@ GameObject:
   - component: {fileID: 2034578489948989773}
   - component: {fileID: 6122013719348767063}
   - component: {fileID: 5019665210445017616}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: red_0
   m_TagString: UnitBlock
   m_Icon: {fileID: 0}
@@ -341,7 +341,7 @@ GameObject:
   - component: {fileID: 3212893629301131741}
   - component: {fileID: 7030309669502155635}
   - component: {fileID: 1903043214251882576}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 16X16 square
   m_TagString: UnitBlock
   m_Icon: {fileID: 0}
@@ -449,7 +449,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6724970801169873216}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: rotationPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -531,7 +531,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.4872281, y: 0.013781637}
+  m_Offset: {x: -0.642151, y: 0.013781637}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -542,7 +542,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.7601413, y: 0.6278954}
+  m_Size: {x: 2.0227878, y: 0.6278954}
   m_EdgeRadius: 0
 --- !u!1 &7872519264011145247
 GameObject:
@@ -553,7 +553,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4672993056278750602}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}

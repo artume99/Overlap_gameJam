@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 9031082175550489690}
   - component: {fileID: 4860233904931457592}
   - component: {fileID: 4610445825286534652}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: pink_1
   m_TagString: UnitBlock
   m_Icon: {fileID: 0}
@@ -119,7 +119,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3086206449171415313}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SpawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -151,7 +151,7 @@ GameObject:
   - component: {fileID: 3899270817658316094}
   - component: {fileID: 2811927589992372744}
   - component: {fileID: 9124763520566218028}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: pink_3
   m_TagString: UnitBlock
   m_Icon: {fileID: 0}
@@ -259,7 +259,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8446391876896425769}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: RotationPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -289,7 +289,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8773040247579577025}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -327,7 +327,7 @@ GameObject:
   - component: {fileID: 3920906981688390809}
   - component: {fileID: 5385038483586055472}
   - component: {fileID: 4829036042857684023}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: pink_0
   m_TagString: UnitBlock
   m_Icon: {fileID: 0}
@@ -437,7 +437,7 @@ GameObject:
   - component: {fileID: 3080876013355509208}
   - component: {fileID: 891833217377153599}
   - component: {fileID: 2993628710405332223}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: pink_2
   m_TagString: UnitBlock
   m_Icon: {fileID: 0}

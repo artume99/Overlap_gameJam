@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.Eventing.Reader;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class FrogPlayer : MonoBehaviour
@@ -12,6 +14,10 @@ public class FrogPlayer : MonoBehaviour
     private bool moveUP;
 
     private bool moveDown;
+
+    private bool movementAllowed = true;
+
+    private Collider2D hit;
 
     [SerializeField]private float tikTime = 0.1f;
 
@@ -30,21 +36,25 @@ public class FrogPlayer : MonoBehaviour
 
     public void Update()
     {
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        if (Input.GetKeyDown(KeyCode.LeftArrow) && movementAllowed)
         {
             moveLeft = true;
+            movementAllowed = false;
         }
-        if (Input.GetKeyDown(KeyCode.RightArrow))
+        if (Input.GetKeyDown(KeyCode.RightArrow)&& movementAllowed)
         {
             moveRight = true;
+            movementAllowed = false;
         }
-        if (Input.GetKeyDown(KeyCode.UpArrow))
+        if (Input.GetKeyDown(KeyCode.UpArrow)&& movementAllowed)
         {
             moveUP = true;
+            movementAllowed = false;
         }
-        if (Input.GetKeyDown(KeyCode.DownArrow))
+        if (Input.GetKeyDown(KeyCode.DownArrow)&& movementAllowed)
         {
             moveDown = true;
+            movementAllowed = false;
         }
     }
 
@@ -59,34 +69,52 @@ public class FrogPlayer : MonoBehaviour
         {
             if (moveLeft)
             {
-                transform.Translate(Vector3.left);
+                hit = Physics2D.OverlapBox(transform.position+Vector3.left, Vector2.one, 0f, LayerMask.GetMask
+                ("Blocks"));
+                if(hit!=null) 
+                    transform.Translate(Vector3.left);
                 moveLeft = false;
+                movementAllowed = true;
             }
             if (moveRight)
             {
-                transform.Translate(Vector3.right);
+                hit = Physics2D.OverlapBox(transform.position+Vector3.right, Vector2.one, 0f, LayerMask.GetMask("Blocks"));
+                if(hit!=null) 
+                    transform.Translate(Vector3.right);
                 moveRight = false;
+                movementAllowed = true;
             }
             if (moveUP)
             {
-                transform.Translate(Vector3.up);
+                hit = Physics2D.OverlapBox(transform.position+Vector3.up, Vector2.one, 0f, LayerMask.GetMask("Blocks"));
+                if(hit!=null) 
+                    transform.Translate(Vector3.up);
                 moveUP = false;
+                movementAllowed = true;
             }
             if (moveDown)
             {
-                transform.Translate(Vector3.down);
+                hit = Physics2D.OverlapBox(transform.position+Vector3.down, Vector2.one, 0f, LayerMask.GetMask("Blocks"));
+                if(hit!=null) {}
+                    transform.Translate(Vector3.down);
+                
                 moveDown = false;
+                movementAllowed = true;
             }
             yield return new WaitForSeconds(tikTime);
         }
         
     }
 
-    private void OnTriggerStay2D(Collider2D other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("UnitBlock"))
+        if (other.gameObject.CompareTag("Map"))
         {
-            Debug.Log("hi");
+            transform.SetParent(null);
+            transform.position = spawnPoint.position;
+        }
+        else if (other.gameObject.CompareTag("UnitBlock"))
+        {
             transform.SetParent(other.transform);
         }
     }
@@ -95,7 +123,6 @@ public class FrogPlayer : MonoBehaviour
     {
         if (other.gameObject.CompareTag("UnitBlock"))
         {
-            Debug.Log("bye");
             transform.SetParent(null);
         }
     }

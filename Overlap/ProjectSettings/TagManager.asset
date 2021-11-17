@@ -6,6 +6,8 @@ TagManager:
   tags:
   - UnitBlock
   - PlayingBlock
+  - Display
+  - Map
   layers:
   - Default
   - TransparentFX
