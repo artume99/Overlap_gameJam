@@ -8,7 +8,8 @@ public class Player2 : MonoBehaviour
 
     private bool moveDown;
 
-    private bool shoot;
+    private bool shootRight;
+    private bool shootLeft;
 
     [SerializeField] private Transform tetrisRoot;
 
@@ -16,6 +17,7 @@ public class Player2 : MonoBehaviour
     private float timer;
 
     [SerializeField] private float tikTime = 0.2f;
+    [SerializeField] private float blockTikTime = 0.7f;
 
     [SerializeField] private Transform spawnPoint;
     // Start is called before the first frame update
@@ -40,14 +42,19 @@ public class Player2 : MonoBehaviour
         {
             moveDown = true;
         }
-        if (Input.GetKeyDown(KeyCode.D) && timer>(tikTime*2))
+        if (Input.GetKeyDown(KeyCode.D) && timer>(tikTime*4))
         {
-            shoot = true;
+            shootRight = true;
             timer = 0;
         }
-        if (Input.GetKeyDown(KeyCode.A))
+        // if (Input.GetKeyDown(KeyCode.A))
+        // {
+        //     GameManager.Instance.menu.RotateBlockImage(false);
+        // }
+        if (Input.GetKeyDown(KeyCode.A) && timer>(tikTime*4))
         {
-            GameManager.Instance.menu.RotateBlockImage(false);
+            shootLeft = true;
+            timer = 0;
         }
 
         timer += Time.deltaTime;
@@ -74,25 +81,31 @@ public class Player2 : MonoBehaviour
                 moveDown = false;
             }
 
-            if (shoot)
+            if (shootRight)
             {
-                ShootBlock();
-                shoot = false; 
+                ShootBlock(Vector3.right,transform.position);
+                shootRight = false; 
+            }
+
+            if (shootLeft)
+            {
+                ShootBlock(Vector3.left,transform.position+new Vector3(16,0,0));
+                shootLeft = false; 
             }
             yield return new WaitForSeconds(tikTime);
         }
     }
 
-    private void ShootBlock()
+    private void ShootBlock(Vector3 direction, Vector3 pos)
     {
         
         var block = GameManager.Instance.GetNextBlock();
         block = Instantiate(block);
         // block.transform.SetParent(tetrisRoot);
-        block.transform.position = transform.position;
+        block.transform.position = pos;
         block.transform.rotation = Quaternion.Euler(0, 0,block.currentRotation);
-        block.SetBlockTikTime(0.2f);
-        block.StartMoving(Vector3.right, playerBlock:true);
+        block.SetBlockTikTime(blockTikTime);
+        block.StartMoving(direction, playerBlock:true);
         GameManager.Instance.SetBlockImage();
     }
 }
