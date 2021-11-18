@@ -33,6 +33,7 @@ public class MenuController : MonoBehaviour
 
    public PlayingBlock GetDisplayBlock()
    {
+      blockImage.BlockPrefabs[currentImage].gameObject.SetActive(true);
       return blockImage.BlockPrefabs[currentImage];
    }
 

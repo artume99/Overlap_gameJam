@@ -15,24 +15,17 @@ public class BlockManager : MonoBehaviour, IPooledObject
     private string BlockTag = "UnitBlock";
     public Sprite check;
     
-    enum ShapeCoding
-    {
-        Unit,
-        Plus,
-        Row_2
-    }
-    private int num_of_available_blocks = 3;
+    private int num_of_available_blocks;
 
     // Start is called before the first frame update
     void Awake()
     {
         num_of_available_blocks = BlockPrefabs.Length;
     }
-
-    public void TetrisUpdate()
-    {
-        // BlockPrefabs[currentBlock].StartMoving(Vector3.down);
-    }
+    // public void OnLevelStart()
+    // {
+    //     BlockPrefabs[currentBlock].gameObject.SetActive(false);
+    // }
     public void ObjectSPawn()
     {
         

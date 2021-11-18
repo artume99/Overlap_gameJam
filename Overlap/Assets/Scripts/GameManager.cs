@@ -11,18 +11,29 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
 
     // GAME STATE
-    public int Score { get; set; }
+    private int score;
+    private int streak;
+    public int Score
+    {
+        get => score;
+        set => score = value;
+    }
+
+    public int Streak => streak;
 
 
     // References
     // plyaer 1
     // player 2
     public MenuController menu;
+    public Transform leftEdge;
+    public Transform rightEdge;
     
    
     // Resources
     public Dictionary<string, AudioSource> AudioSources;
     public GameObject[] Blocks;
+    private string nextLevelFunc = "OnLevelStart";
 
 
 
@@ -48,10 +59,30 @@ public class GameManager : MonoBehaviour
         menu.SetBlockImage(Random.Range(0, Blocks.Length));
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Backspace))
+        {
+            menu.RestartGame();
+        }
+
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            menu.Pause();
+        }
+    }
+
     public PlayingBlock GetNextBlock()
     {
         return menu.GetDisplayBlock();
     }
-    
+
+    public void NextLevel()
+    {
+        leftEdge.Translate(Vector3.left);
+        rightEdge.Translate(Vector3.right);
+        streak++;
+        BroadcastMessage(nextLevelFunc,SendMessageOptions.DontRequireReceiver);
+    }
     
 }

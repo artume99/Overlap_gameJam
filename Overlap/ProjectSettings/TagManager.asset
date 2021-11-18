@@ -8,6 +8,10 @@ TagManager:
   - PlayingBlock
   - Display
   - Map
+  - Win
+  - Death
+  - RightEdge
+  - LeftEdge
   layers:
   - Default
   - TransparentFX

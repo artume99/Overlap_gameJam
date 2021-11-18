@@ -10,6 +10,7 @@ public class Player2 : MonoBehaviour
 
     private bool shootRight;
     private bool shootLeft;
+    private int startLevelOffset = 6;
 
     [SerializeField] private Transform tetrisRoot;
 
@@ -27,6 +28,10 @@ public class Player2 : MonoBehaviour
     }
     
     private void Start()
+    {
+        OnLevelStart();
+    }
+    public void OnLevelStart()
     {
         transform.position = spawnPoint.position;
     }
@@ -89,7 +94,8 @@ public class Player2 : MonoBehaviour
 
             if (shootLeft)
             {
-                ShootBlock(Vector3.left,transform.position+new Vector3(16,0,0));
+                int offset = startLevelOffset + GameManager.Instance.Streak*2;
+                ShootBlock(Vector3.left,transform.position+new Vector3(offset,0,0));
                 shootLeft = false; 
             }
             yield return new WaitForSeconds(tikTime);
@@ -98,12 +104,12 @@ public class Player2 : MonoBehaviour
 
     private void ShootBlock(Vector3 direction, Vector3 pos)
     {
-        
         var block = GameManager.Instance.GetNextBlock();
-        block = Instantiate(block);
+        block = Instantiate(block, transform.parent);
         // block.transform.SetParent(tetrisRoot);
         block.transform.position = pos;
         block.tag = "PlayingBlock";
+        block.direction = direction == Vector3.right;
         block.transform.rotation = Quaternion.Euler(0, 0,block.currentRotation);
         block.SetBlockTikTime(blockTikTime);
         block.StartMoving(direction, playerBlock:true);

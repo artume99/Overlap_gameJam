@@ -8,13 +8,14 @@ using UnityEngine;
 public class PlayingBlock : MonoBehaviour
 {
     [SerializeField] private Transform rotationPoint;
-     public Transform spawnPoint;
     
     public int currentRotation = 0;
     private int defaultRotation = 90;
     private Vector3 currentDirection;
     private bool move = false;
     private float tikTime = 0.5f;
+    public int wallTouches = 1;
+    public bool direction;
     
 
     // Update is called once per frame
@@ -22,6 +23,10 @@ public class PlayingBlock : MonoBehaviour
     {
         if (move)
             transform.Translate(currentDirection, Space.World);
+    }
+    public void OnLevelStart()
+    {
+        gameObject.SetActive(false);
     }
     private IEnumerator PlayerBlockMovement()
     {
@@ -72,4 +77,5 @@ public class PlayingBlock : MonoBehaviour
     {
         tikTime = tik;
     }
+   
 }

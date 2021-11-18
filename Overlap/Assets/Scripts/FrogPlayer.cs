@@ -31,9 +31,13 @@ public class FrogPlayer : MonoBehaviour
 
     private void Start()
     {
-        transform.position = spawnPoint.position;
+        OnLevelStart();
     }
 
+    public void OnLevelStart()
+    {
+        transform.position = spawnPoint.position;
+    }
     public void Update()
     {
         if (Input.GetKeyDown(KeyCode.LeftArrow) && movementAllowed)
@@ -69,7 +73,7 @@ public class FrogPlayer : MonoBehaviour
         {
             if (moveLeft)
             {
-                hit = Physics2D.OverlapBox(transform.position+Vector3.left, Vector2.one, 0f, LayerMask.GetMask
+                hit = Physics2D.OverlapBox(transform.position+Vector3.left, Vector2.zero, 0f, LayerMask.GetMask
                 ("Blocks"));
                 if(hit!=null) 
                     transform.Translate(Vector3.left);
@@ -78,7 +82,7 @@ public class FrogPlayer : MonoBehaviour
             }
             if (moveRight)
             {
-                hit = Physics2D.OverlapBox(transform.position+Vector3.right, Vector2.one, 0f, LayerMask.GetMask("Blocks"));
+                hit = Physics2D.OverlapBox(transform.position+Vector3.right, Vector2.zero, 0f, LayerMask.GetMask("Blocks"));
                 if(hit!=null) 
                     transform.Translate(Vector3.right);
                 moveRight = false;
@@ -86,7 +90,7 @@ public class FrogPlayer : MonoBehaviour
             }
             if (moveUP)
             {
-                hit = Physics2D.OverlapBox(transform.position+Vector3.up, Vector2.one, 0f, LayerMask.GetMask("Blocks"));
+                hit = Physics2D.OverlapBox(transform.position+Vector3.up, Vector2.zero, 0f, LayerMask.GetMask("Blocks"));
                 if(hit!=null) 
                     transform.Translate(Vector3.up);
                 moveUP = false;
@@ -94,10 +98,12 @@ public class FrogPlayer : MonoBehaviour
             }
             if (moveDown)
             {
-                hit = Physics2D.OverlapBox(transform.position+Vector3.down, Vector2.one, 0f, LayerMask.GetMask("Blocks"));
-                if(hit!=null) {}
+                hit = Physics2D.OverlapBox(transform.position+Vector3.down, Vector2.zero, 0f, LayerMask.GetMask("Blocks"));
+                if (hit != null)
+                {
                     transform.Translate(Vector3.down);
-                
+                }
+
                 moveDown = false;
                 movementAllowed = true;
             }
@@ -106,11 +112,11 @@ public class FrogPlayer : MonoBehaviour
         
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerStay2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Map"))
+        if (other.gameObject.CompareTag("RightEdge") ||other.gameObject.CompareTag("LeftEdge") )
         {
-            transform.SetParent(null);
+            transform.SetParent(GameManager.Instance.transform);
             transform.position = spawnPoint.position;
         }
         else if (other.gameObject.CompareTag("UnitBlock"))
@@ -118,13 +124,19 @@ public class FrogPlayer : MonoBehaviour
             transform.SetParent(other.transform);
         }
     }
-    
-    private void OnTriggerExit2D(Collider2D other)
+
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("UnitBlock"))
+        if (other.gameObject.CompareTag("Win"))
         {
-            transform.SetParent(null);
+            transform.SetParent(GameManager.Instance.transform);
+            GameManager.Instance.NextLevel();
         }
+        if (other.gameObject.CompareTag("Death"))
+        {
+            Debug.Log("YOU LOOSE");
+        }
+
+        
     }
-    
 }
