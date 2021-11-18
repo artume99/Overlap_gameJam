@@ -217,6 +217,8 @@ GameObject:
   - component: {fileID: 59256325}
   - component: {fileID: 59256324}
   - component: {fileID: 59256323}
+
+
   - component: {fileID: 59256327}
 
   - component: {fileID: 59256326}
@@ -315,12 +317,14 @@ Transform:
 Animator:
   serializedVersion: 3
 
+
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 59256322}
   m_Enabled: 1
+
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: d8745ae3c11b69042b239b25841e6b7a, type: 2}
   m_CullingMode: 0
@@ -4613,6 +4617,7 @@ Transform:
   - {fileID: 1107091057}
   - {fileID: 59256325}
   - {fileID: 1676516884}
+
 
 
   - {fileID: 245799038}
