@@ -13,7 +13,6 @@ public class BlockManager : MonoBehaviour, IPooledObject
     private int[] degrees = {0,90,180,270};
 
     private string BlockTag = "UnitBlock";
-    public Sprite check;
     
     private int num_of_available_blocks;
 

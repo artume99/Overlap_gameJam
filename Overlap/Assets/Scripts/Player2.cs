@@ -4,19 +4,21 @@ using UnityEngine;
 
 public class Player2 : MonoBehaviour
 {
+    // Movement memmory
     private bool moveUP;
-
     private bool moveDown;
-
     private bool shootRight;
     private bool shootLeft;
+    
+    // Movement Keys
+    private KeyCode _up;
+    private KeyCode _down;
+    private KeyCode _leftShot;
+    private KeyCode _rightShot;
+    
     private int startLevelOffset = 6;
-
     [SerializeField] private Transform tetrisRoot;
-
-    public PlayingBlock check;
     private float timer;
-
     [SerializeField] private float tikTime = 0.2f;
     [SerializeField] private float blockTikTime = 0.7f;
 
@@ -39,15 +41,15 @@ public class Player2 : MonoBehaviour
     public void Update()
     {
         
-        if (Input.GetKeyDown(KeyCode.W))
+        if (Input.GetKeyDown(_up))
         {
             moveUP = true;
         }
-        if (Input.GetKeyDown(KeyCode.S))
+        if (Input.GetKeyDown(_down))
         {
             moveDown = true;
         }
-        if (Input.GetKeyDown(KeyCode.A) && timer>(tikTime*4))
+        if (Input.GetKeyDown(_leftShot) && timer>(tikTime*4))
         {
             shootRight = true;
             timer = 0;
@@ -56,7 +58,7 @@ public class Player2 : MonoBehaviour
         // {
         //     GameManager.Instance.menu.RotateBlockImage(false);
         // }
-        if (Input.GetKeyDown(KeyCode.D) && timer>(tikTime*4))
+        if (Input.GetKeyDown(_rightShot) && timer>(tikTime*4))
         {
             shootLeft = true;
             timer = 0;
@@ -114,5 +116,13 @@ public class Player2 : MonoBehaviour
         block.SetBlockTikTime(blockTikTime);
         block.StartMoving(direction, playerBlock:true);
         GameManager.Instance.SetBlockImage();
+    }
+
+    public void SetMovementKeys(KeyCode up, KeyCode down, KeyCode leftShot, KeyCode rightShot)
+    {
+        this._up = up;
+        this._down = down;
+        this._rightShot = rightShot;
+        this._leftShot = leftShot;
     }
 }

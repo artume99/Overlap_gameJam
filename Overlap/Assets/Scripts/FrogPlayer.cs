@@ -7,16 +7,18 @@ using UnityEngine;
 
 public class FrogPlayer : MonoBehaviour
 {
+    // Movement memmory
     private bool moveLeft;
-
     private bool moveRight;
-
     private bool moveUP;
-
     private bool moveDown;
-
     private bool movementAllowed = true;
-
+    
+    // Movement Keys
+    private KeyCode _up;
+    private KeyCode _down;
+    private KeyCode _left;
+    private KeyCode _right;
     private Collider2D hit;
 
     [SerializeField]private float tikTime = 0.1f;
@@ -40,22 +42,22 @@ public class FrogPlayer : MonoBehaviour
     }
     public void Update()
     {
-        if (Input.GetKeyDown(KeyCode.LeftArrow) && movementAllowed)
+        if (Input.GetKeyDown(_left) && movementAllowed)
         {
             moveLeft = true;
             movementAllowed = false;
         }
-        if (Input.GetKeyDown(KeyCode.RightArrow)&& movementAllowed)
+        if (Input.GetKeyDown(_right)&& movementAllowed)
         {
             moveRight = true;
             movementAllowed = false;
         }
-        if (Input.GetKeyDown(KeyCode.UpArrow)&& movementAllowed)
+        if (Input.GetKeyDown(_up)&& movementAllowed)
         {
             moveUP = true;
             movementAllowed = false;
         }
-        if (Input.GetKeyDown(KeyCode.DownArrow)&& movementAllowed)
+        if (Input.GetKeyDown(_down)&& movementAllowed)
         {
             moveDown = true;
             movementAllowed = false;
@@ -111,6 +113,13 @@ public class FrogPlayer : MonoBehaviour
         }
         
     }
+    public void SetMovementKeys(KeyCode up, KeyCode down, KeyCode left, KeyCode right)
+    {
+        this._up = up;
+        this._down = down;
+        this._right = right;
+        this._left = left;
+    }
 
     private void OnTriggerStay2D(Collider2D other)
     {
@@ -136,7 +145,6 @@ public class FrogPlayer : MonoBehaviour
         {
             Debug.Log("YOU LOOSE");
         }
-
         
     }
 }
