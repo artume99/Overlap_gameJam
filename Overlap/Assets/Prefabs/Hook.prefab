@@ -298,6 +298,7 @@ MonoBehaviour:
   rotationPoint: {fileID: 111757372438847493}
   currentRotation: 0
   wallTouches: 1
+  direction: 0
 --- !u!61 &8441138145146126151
 BoxCollider2D:
   m_ObjectHideFlags: 0
