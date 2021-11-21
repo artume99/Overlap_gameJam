@@ -316,6 +316,8 @@ Transform:
 --- !u!95 &59256326
 Animator:
   serializedVersion: 3
+
+
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -15361,8 +15363,13 @@ Transform:
   - {fileID: 1107091057}
   - {fileID: 59256325}
   - {fileID: 1676516884}
+
+
+
   - {fileID: 245799038}
+
   - {fileID: 1336637752}
+
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
