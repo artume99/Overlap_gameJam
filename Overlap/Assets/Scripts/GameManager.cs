@@ -31,8 +31,14 @@ public class GameManager : MonoBehaviour
     
    
     // Resources
+    public AudioSource switchSound;
+    public AudioSource pauseSound;
+    public AudioSource gameSound;
+    
     public Dictionary<string, AudioSource> AudioSources;
     public GameObject[] Blocks;
+    public Animator cameraShake;
+    public Animator switchPlayers;
     private string nextLevelFunc = "OnLevelStart";
 
 
@@ -51,7 +57,14 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        menu.UpdateMenu();
         SetBlockImage();
+        AudioSources = new Dictionary<string, AudioSource>
+        {
+            {"switch",switchSound},
+            {"pause",pauseSound},
+            {"background", gameSound}
+        };
     }
 
     public void SetBlockImage()
@@ -61,12 +74,13 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Backspace))
+        if (Input.GetKeyDown(KeyCode.R))
         {
+            AudioSources["pause"].Play();
             menu.RestartGame();
         }
 
-        if (Input.GetKeyDown(KeyCode.P))
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
             menu.Pause();
         }
@@ -82,7 +96,33 @@ public class GameManager : MonoBehaviour
         leftEdge.Translate(Vector3.left);
         rightEdge.Translate(Vector3.right);
         streak++;
+        menu.UpdateMenu();
+        // AudioSources["switch"].Play();
+        if(streak%2==1)
+            switchPlayers.SetTrigger("SwitchTime");
+        else
+            switchPlayers.SetTrigger("SwitchPlaces");
+
         BroadcastMessage(nextLevelFunc,SendMessageOptions.DontRequireReceiver);
     }
+
+    public void PlayerDied()
+    {
+        streak = 0;
+        menu.UpdateMenu();
+        StartCoroutine(LoadLevel());
+    }
     
+    private IEnumerator LoadLevel()
+    {
+        cameraShake.SetTrigger("camerashake");
+        yield return new WaitForSeconds(0.1f);
+
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void EndTutorial()
+    {
+        SceneManager.LoadScene(2);
+    }
 }

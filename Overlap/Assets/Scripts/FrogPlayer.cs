@@ -141,9 +141,18 @@ public class FrogPlayer : MonoBehaviour
             transform.SetParent(GameManager.Instance.transform);
             GameManager.Instance.NextLevel();
         }
+        if (other.gameObject.CompareTag("EndToturial"))
+        {
+            GameManager.Instance.EndTutorial();
+        }
+        if (other.gameObject.CompareTag("ResetToturial"))
+        {
+            transform.position = spawnPoint.position;
+        }
+        
         if (other.gameObject.CompareTag("Death"))
         {
-            Debug.Log("YOU LOOSE");
+            GameManager.Instance.PlayerDied();
         }
         
     }

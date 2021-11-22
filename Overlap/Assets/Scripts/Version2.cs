@@ -34,7 +34,7 @@ public class Version2 : MonoBehaviour
                 objectSpawn.SetActive(true);
                 objectSpawn.transform.position = pos;
                 objectSpawn.transform.rotation = rotation;
-                objectSpawn.GetComponent<IPooledObject>().ObjectSPawn();
+                objectSpawn.GetComponent<IPooledObject>().ObjectSPawn(false);
                 return objectSpawn;
             }
         }

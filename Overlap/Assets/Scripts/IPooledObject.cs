@@ -1,5 +1,5 @@
 
 public interface IPooledObject
 {
-  public void ObjectSPawn();
+  public void ObjectSPawn(bool inTutorial);
 }

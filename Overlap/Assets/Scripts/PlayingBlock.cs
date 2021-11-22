@@ -14,8 +14,8 @@ public class PlayingBlock : MonoBehaviour
     private Vector3 currentDirection;
     private bool move = false;
     private float tikTime = 0.5f;
-    public int wallTouches = 1;
     public bool direction;
+    private string BlockTag = "UnitBlock";
     
 
     // Update is called once per frame
@@ -76,6 +76,18 @@ public class PlayingBlock : MonoBehaviour
     public void SetBlockTikTime(float tik)
     {
         tikTime = tik;
+    }
+    
+    public void ColorBlock(Sprite sprite)
+    {
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            Transform child = transform.GetChild(i);
+            if (child.gameObject.CompareTag(BlockTag))
+            {
+                child.GetComponent<SpriteRenderer>().sprite = sprite;
+            }
+        }
     }
    
 }

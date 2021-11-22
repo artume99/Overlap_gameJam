@@ -55,7 +55,8 @@ MonoBehaviour:
   - {fileID: 3685359548170670091}
   - {fileID: 3472591448109861727}
   - {fileID: 6769515895858553517}
-  check: {fileID: -6066118486286797815, guid: 563e14a0537aa2e40b1fe1ee9ef518ff, type: 3}
+  colorBlocks:
+  - {fileID: 21300000, guid: a9de0e4ff22fbb34680529f35ba301d6, type: 3}
 --- !u!1001 &2850427071224107525
 PrefabInstance:
   m_ObjectHideFlags: 0

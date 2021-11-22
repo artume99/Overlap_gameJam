@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -8,8 +10,10 @@ public class MenuController : MonoBehaviour
 {
    [SerializeField] private BlockManager blockImage;
    [SerializeField] private Image PauseImage;
+   [SerializeField] private TextMeshProUGUI streaksText;
    private int currentImage = 0;
    private bool pause;
+   
    
    public void RotateBlockImage(bool right)
    {
@@ -41,11 +45,13 @@ public class MenuController : MonoBehaviour
    {
       if (pause)
       {
+         // GameManager.Instance.AudioSources["game"].Play();
          Time.timeScale = 1;
          pause = false;
       }
       else
       {
+         // GameManager.Instance.AudioSources["game"].Stop();
          Time.timeScale = 0;
          pause = true;
       }
@@ -54,11 +60,12 @@ public class MenuController : MonoBehaviour
 
    public void UpdateMenu()
    {
-      // Will update points, level etc.
+      if(streaksText)
+         streaksText.text = String.Format("Streaks: {0:000}", GameManager.Instance.Streak);
    }
 
    public void RestartGame()
    {
-      SceneManager.LoadScene( SceneManager.GetActiveScene().name );
+      SceneManager.LoadScene(0);
    }
 }
