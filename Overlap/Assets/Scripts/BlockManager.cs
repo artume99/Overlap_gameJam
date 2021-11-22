@@ -8,6 +8,7 @@ using Random = UnityEngine.Random;
 public class BlockManager : MonoBehaviour, IPooledObject
 { 
     public PlayingBlock[] BlockPrefabs;
+    public Sprite[] colorBlocks;
     private int blockActivated = 0;
     private int currentBlock = 0;
     private int[] degrees = {0,90,180,270};
@@ -42,21 +43,10 @@ public class BlockManager : MonoBehaviour, IPooledObject
         block.StartMoving(Vector3.down);
         // ColorBlock(check, block);
         block.Rotate(degrees[Random.Range(0,degrees.Length)]);
+        block.ColorBlock(colorBlocks[Random.Range(0, colorBlocks.Length)]);
         
         currentBlock = blockActivated;
         
-    }
-    // this function "COLORS" the block with a new sprite
-    private void ColorBlock(Sprite sprite, PlayingBlock block)
-    {
-        for (int i = 0; i < block.transform.childCount; i++)
-        {
-            Transform child = block.transform.GetChild(i);
-            if (child.gameObject.CompareTag(BlockTag))
-            {
-                child.GetComponent<SpriteRenderer>().sprite = sprite;
-            }
-        }
     }
 
 }

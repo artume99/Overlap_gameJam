@@ -21,6 +21,7 @@ public class Player2 : MonoBehaviour
     private float timer;
     [SerializeField] private float tikTime = 0.2f;
     [SerializeField] private float blockTikTime = 0.7f;
+    [SerializeField] private Sprite whiteBlock;
 
     [SerializeField] private Transform spawnPoint;
     // Start is called before the first frame update
@@ -113,6 +114,7 @@ public class Player2 : MonoBehaviour
         block.tag = "PlayingBlock";
         block.direction = direction == Vector3.right;
         block.transform.rotation = Quaternion.Euler(0, 0,block.currentRotation);
+        block.ColorBlock(whiteBlock);
         block.SetBlockTikTime(blockTikTime);
         block.StartMoving(direction, playerBlock:true);
         GameManager.Instance.SetBlockImage();

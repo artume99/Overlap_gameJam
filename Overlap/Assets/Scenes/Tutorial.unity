@@ -2746,6 +2746,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   blockImage: {fileID: 1632404802}
   PauseImage: {fileID: 0}
+  streaksText: {fileID: 0}
 --- !u!114 &980429549
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8310,12 +8311,16 @@ MonoBehaviour:
   menu: {fileID: 980429548}
   leftEdge: {fileID: 9949325}
   rightEdge: {fileID: 1342638731}
+  switchSound: {fileID: 0}
+  pauseSound: {fileID: 0}
+  gameSound: {fileID: 0}
   Blocks:
   - {fileID: 3206313819476579602, guid: a67bf39d88b5a86478d1451bd70d214d, type: 3}
   - {fileID: 7282162896166510544, guid: 3358b2313dab8d24985474d8a0c0ff3f, type: 3}
   - {fileID: 9045039881210142909, guid: 4da8686110568514ea843bc755d77b32, type: 3}
   - {fileID: 4855173243475113987, guid: b15a4a32e52f0454c9a0bd2c92036898, type: 3}
   - {fileID: 3639208011256179982, guid: 5fba2130447d65449ad6c5523b1fbaf2, type: 3}
+  cameraShake: {fileID: 0}
 --- !u!4 &1273554291
 Transform:
   m_ObjectHideFlags: 0
@@ -9622,7 +9627,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1561800439
 Transform:
   m_ObjectHideFlags: 0
@@ -15807,6 +15812,7 @@ MonoBehaviour:
   tetrisRoot: {fileID: 1561800439}
   tikTime: 0.2
   blockTikTime: 0.7
+  whiteBlock: {fileID: 21300000, guid: ab89145a529c14246b3ea8e319021be4, type: 3}
   spawnPoint: {fileID: 1654904035}
 --- !u!4 &1991094175
 Transform:
