@@ -39,7 +39,6 @@ public class GameManager : MonoBehaviour
     public GameObject[] Blocks;
     public Animator cameraShake;
     private string nextLevelFunc = "OnLevelStart";
-    
 
 
 
@@ -111,7 +110,7 @@ public class GameManager : MonoBehaviour
     private IEnumerator LoadLevel()
     {
         cameraShake.SetTrigger("camerashake");
-        yield return new WaitForSeconds(0.02f);
+        yield return new WaitForSeconds(0.1f);
 
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
