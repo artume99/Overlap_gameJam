@@ -1658,7 +1658,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &387636485
 Transform:
   m_ObjectHideFlags: 0
@@ -2985,6 +2985,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9782926a7c4dc3d4393738428fa86185, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inTutorial: 0
   interval: 2
   spawnPoints:
   - spawnPoints:
@@ -13850,6 +13851,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20b93ee9b2c72e342a37cef181da82dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inTutorial: 0
   pools:
   - tag: Block
     prefab: {fileID: 8114895142840339626, guid: 077a7aac53fcad64b8fc27cab7ab2cdc, type: 3}
@@ -21149,7 +21151,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.0073111244}
+  m_Offset: {x: 0, y: 0.11551894}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -21160,7 +21162,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.57, y: 0.055377744}
+  m_Size: {x: 2.57, y: 0.39613166}
   m_EdgeRadius: 0
 --- !u!1 &1997458332
 GameObject:
