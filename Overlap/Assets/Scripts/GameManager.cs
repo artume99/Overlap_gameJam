@@ -38,6 +38,7 @@ public class GameManager : MonoBehaviour
     public Dictionary<string, AudioSource> AudioSources;
     public GameObject[] Blocks;
     public Animator cameraShake;
+    public Animator switchPlayers;
     private string nextLevelFunc = "OnLevelStart";
 
 
@@ -96,7 +97,12 @@ public class GameManager : MonoBehaviour
         rightEdge.Translate(Vector3.right);
         streak++;
         menu.UpdateMenu();
-        AudioSources["switch"].Play();
+        // AudioSources["switch"].Play();
+        if(streak%2==1)
+            switchPlayers.SetTrigger("SwitchTime");
+        else
+            switchPlayers.SetTrigger("SwitchPlaces");
+
         BroadcastMessage(nextLevelFunc,SendMessageOptions.DontRequireReceiver);
     }
 
