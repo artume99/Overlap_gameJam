@@ -120,5 +120,9 @@ public class GameManager : MonoBehaviour
 
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
-    
+
+    public void EndTutorial()
+    {
+        SceneManager.LoadScene(2);
+    }
 }

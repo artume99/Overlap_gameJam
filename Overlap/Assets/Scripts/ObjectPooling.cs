@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class ObjectPooling : MonoBehaviour
 {
+    public bool inTutorial;
     [System.Serializable]
     public class Pool
     {
@@ -48,7 +49,7 @@ public class ObjectPooling : MonoBehaviour
         IPooledObject pooledObject = objectSpawn.GetComponent<IPooledObject>();
         if (pooledObject != null)
         {
-            pooledObject.ObjectSPawn();
+            pooledObject.ObjectSPawn(inTutorial);
         }
         
         PoolDictionary[tag].Enqueue(objectSpawn);

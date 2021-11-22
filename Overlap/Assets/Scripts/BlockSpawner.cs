@@ -6,6 +6,7 @@ using Random = UnityEngine.Random;
 
 public class BlockSpawner : MonoBehaviour
 {
+    public bool inTutorial = false;
     [Serializable]
     public class Levels
     {
@@ -42,11 +43,18 @@ public class BlockSpawner : MonoBehaviour
 
     private void Spawn()
     {
+        
         var currentLevel = spawnPoints[GameManager.Instance.Streak];
         Transform[] spawnPointsAvailable = currentLevel.spawnPoints;
 
         var rnd = spawnPointsAvailable[Random.Range(0,spawnPointsAvailable.Length)];
-        pooler.SpawnFromPool("Block", rnd.position, Quaternion.identity);
+        var block = pooler.SpawnFromPool("Block", rnd.position, Quaternion.identity);
+        var bm = block.GetComponent<BlockManager>();
+        if (inTutorial)
+        {
+            bm.inTutorial = true;
+        }
+
         // Version2.SharedInstance.GetPooledObject(transform.position, Quaternion.identity);
     }
 }

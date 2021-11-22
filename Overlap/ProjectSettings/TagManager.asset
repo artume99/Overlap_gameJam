@@ -12,6 +12,8 @@ TagManager:
   - Death
   - RightEdge
   - LeftEdge
+  - EndToturial
+  - ResetToturial
   layers:
   - Default
   - TransparentFX
