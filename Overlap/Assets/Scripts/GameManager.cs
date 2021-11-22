@@ -118,6 +118,7 @@ public class GameManager : MonoBehaviour
         cameraShake.SetTrigger("camerashake");
         yield return new WaitForSeconds(0.1f);
 
+        
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
     
